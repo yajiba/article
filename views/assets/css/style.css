@@ -55,3 +55,7 @@ td.icons a {
 p.view-content {
     margin-top: 30px;
 }
+.update-modal img {
+    border-radius: 10px;
+    margin: 10px 0;
+}

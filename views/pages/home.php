@@ -49,7 +49,7 @@
                                     <a href="javascript:void(0)" title="Delete" class="deletearticle" id="<?php echo $row->id; ?>"><img src="views/assets/img/delete.svg" id="delete"/></a>
                                    </td>
                               </tr>
-                                <div class="modal fade" id="updateModal-<?php echo $row->id; ?>" tabindex="-1" aria-labelledby="updateModal-<?php echo $row->id; ?>" aria-hidden="true">
+                                <div class="modal fade update-modal" id="updateModal-<?php echo $row->id; ?>" tabindex="-1" aria-labelledby="updateModal-<?php echo $row->id; ?>" aria-hidden="true">
                                     <div class="modal-dialog">
                                        <div class="modal-content">
                                           <div class="modal-header">
@@ -68,12 +68,13 @@
                                              </div>
                                              <div class="form-group">
                                                 <label>Content</label>
-                                                <textarea class="form-control" id="update_content" name="update_content"  rows="3" placeholder="Content"><?php echo $art->content;?></textarea>
+                                                <textarea class="form-control" id="update_content" name="update_content"  rows="3" placeholder="Content" required><?php echo $art->content;?></textarea>
                                              </div>
                                              <div class="form-group">
-                                                <label>Image</label>
+                                                <label>Image</label><br/>
+                                                <img width='100px' height='100px' src="views/uploads/<?php echo $art->image; ?>"/>
                                                 <input class="form-control" id="update_fileToUpload" name="update_fileToUpload" type="file">
-                                                <span class="note">Leave it black if you do not want to update</span>
+                                                <span class="note">Leave it blank if you do not want to update</span>
                                              </div>
                                              <?php }?>
                                           </div>
@@ -128,7 +129,7 @@
                         </div>
                         <div class="form-group">
                            <label>Content</label>
-                           <textarea class="form-control" id="content" name="content"  rows="3" placeholder="Content"></textarea>
+                           <textarea class="form-control" id="content" name="content"  rows="3" placeholder="Content" required></textarea>
                         </div>
                         <div class="form-group">
                            <label>Image</label>
