@@ -75,8 +75,8 @@ class Controller {
             $mail->isSMTP();                                           
             $mail->Host       = 'smtp.gmail.com';                   
             $mail->SMTPAuth   = true;                            
-            $mail->Username   = 'gmailaccount';                
-            $mail->Password   = 'secret';                       
+            $mail->Username   = 'rogenewebdev@gmail.com';                
+            $mail->Password   = 'ticgdyglsrifinew';                       
             $mail->SMTPSecure = 'tls';                             
             $mail->Port       = 587; 
          
