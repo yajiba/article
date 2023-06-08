@@ -68,19 +68,19 @@ class Controller {
 
     public function send_mail($data) {
         $mail = new PHPMailer(true);
-        $response = "";
+        $response = 0;
         $articles = json_decode($this->model->get_by_date($data['date']));
         try {
-                                               
+            $mail->SMTPDebug = 0;                                 
             $mail->isSMTP();                                           
-            $mail->Host       = 'sandbox.smtp.mailtrap.io';                   
+            $mail->Host       = 'smtp.gmail.com';                   
             $mail->SMTPAuth   = true;                            
-            $mail->Username   = '8d42443a06f153';                
-            $mail->Password   = 'ac2ac6806d38c6';                       
+            $mail->Username   = 'gmailaccount';                
+            $mail->Password   = 'secret';                       
             $mail->SMTPSecure = 'tls';                             
             $mail->Port       = 587; 
          
-            $mail->setFrom('jinyajiba@Gmail.com', 'Article Test');          
+            $mail->setFrom('rogenewebdev@gmail.com', 'Article Test');          
             $mail->addAddress($data['recipient']);
               
             $mail->isHTML(true);                                 

@@ -1,6 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12 content">
+        
 			<div class="row">
 				<div class="col-md-12 content-button">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mailModal">
@@ -20,16 +21,18 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Title</th>
+                            <th width="200px">Title</th>
                             <th width="150px">Date Published</th>
-                            <th>Image</th>
+                            <th width="100px">Image</th>
                             <th>Content</th>
-                            <th width="150px">Action</th>
+                            <th width="90px">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                               
-                            <?php $results = json_decode($data);
+                            <?php 
+                            $model = new Model();
+                            $results = json_decode($data);
                               if($results) { 
                               foreach($results as $row) {
                             ?>
@@ -38,12 +41,13 @@
                                  <td><?php echo $row->id;?></td>
                                  <td><?php echo $row->title;?></td>
                                  <td><?php echo date('F j, Y', strtotime($row->date));?></td>
-                                 <td><img width='70px' height='70px' src="views/uploads/<?php echo $row->image; ?>"/></td>
+                                 <td><img width='100px' height='100px' src="views/uploads/<?php echo $row->image; ?>"/></td>
                                  <td><?php echo $row->content;?></td>
-                                 <td>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal-<?php echo $row->id; ?> ">Edit</button>
-                                    <button type="button" class="btn btn-danger deletearticle"  id="<?php echo $row->id; ?>">Delete</button>
-                                 </td>
+                                 <td class="icons">
+                                    <a href="javascript:void(0)" title="View"  data-bs-toggle="modal" data-bs-target="#viewModal-<?php echo $row->id; ?> "><img src="views/assets/img/view.svg" id="view" /></a>
+                                    <a href="javascript:void(0)" title="Edit" data-bs-toggle="modal" data-bs-target="#updateModal-<?php echo $row->id; ?> " ><img src="views/assets/img/edit.svg" id="edit"/></a>
+                                    <a href="javascript:void(0)" title="Delete" class="deletearticle" id="<?php echo $row->id; ?>"><img src="views/assets/img/delete.svg" id="delete"/></a>
+                                   </td>
                               </tr>
                                 <div class="modal fade" id="updateModal-<?php echo $row->id; ?>" tabindex="-1" aria-labelledby="updateModal-<?php echo $row->id; ?>" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -53,7 +57,7 @@
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
                                           <div class="modal-body">
-                                             <?php $model = new Model();
+                                             <?php 
                                              $article = json_decode($model->get($row->id));
                                              foreach($article as $art) {
                                               ?>
@@ -80,6 +84,26 @@
                                        </div>
                                     </div>
                                  </div>
+                                 <div class="modal fade view-modal" id="viewModal-<?php echo $row->id;?>" tabindex="-1" aria-labelledby="viewModal" aria-hidden="true">
+                                 <div class="modal-dialog">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                       <h1 class="modal-title fs-5">Article Details</h1>
+                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                       </div>
+                                       <div class="modal-body">
+                                          <?php  $viewarticle = json_decode($model->get($row->id));
+                                           foreach($viewarticle as $view) { ?>
+                                           <h1><?php echo $view->title;?></h1>
+                                           <p class="date-publish"><?php echo date('F j, Y', strtotime($view->date))?></p>
+                                           <img width='100%' height='400px' src="views/uploads/<?php echo $view->image; ?>"/>
+                                           <p class="view-content"><?php echo $view->content;?></p>
+                                           <?php }?>
+                                       </div>
+                                       
+                                    </div>
+                                 </div>
+                              </div>
                                  
                              <?php } }?>
                             
@@ -152,6 +176,8 @@
                </div>
             </div>
             </form>
+
+           
            
 		</div>	
 	</div>

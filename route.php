@@ -36,7 +36,7 @@ if(isset($_POST['id'])){
 }
 if(isset($_POST['date'])){
     $response = $controller->send_mail($_POST);
-    if($response) {
+    if($response == 1) {
         echo json_encode(array('status' => 'success','message' =>"Article successfully sent."));
     }else {
         echo json_encode(array('status' => 'failed','message' =>"Error while sending article."));

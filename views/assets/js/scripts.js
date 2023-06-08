@@ -16,6 +16,7 @@ jQuery(function($) {
         processData:false,
         success: function(data)
         {
+            
             var response = JSON.parse(data);
             if(response['status'] == 'success') {
                 alert(response['message']);
@@ -66,6 +67,7 @@ jQuery(function($) {
                 processData:false,
                 success: function(data)
                 {
+                    console.log(data);
                     $('#mailarticle').val('Send');
                     var response = JSON.parse(data);
                     if(response['status'] == 'success') {

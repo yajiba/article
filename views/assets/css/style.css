@@ -33,3 +33,25 @@ i.fa.fa-calendar {
 table#article-table img {
     border-radius: 10px;
 }
+.container-fluid .content {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 35px;
+    background: #fff;
+}
+
+td.icons img {
+    height: 20px;
+}
+td.icons a {
+    margin-right: 10px;
+}
+.view-modal .modal-dialog {
+    max-width: 50%;
+}
+.view-modal img {
+    object-fit: cover;
+}
+p.view-content {
+    margin-top: 30px;
+}
